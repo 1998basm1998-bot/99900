@@ -31,9 +31,11 @@
     registerBtn.addEventListener('click', async () => {
         tokenBox.innerText = "جاري الاتصال بـ Pushy وجلب رمز الجهاز...";
         
-        // تشغيل نظام التحقق وطلب إذن الإشعارات من المتصفح
-        Pushy.register({ appId: '6669941bd5a7d7452d3a016d' }).then(function (deviceToken) {
-            // عند نجاح التفعيل، يظهر التوكن الفريد لهاتفك هنا
+        // تم التعديل هنا لحل مشكلة الـ 404 بإضافة مسار السيرفس وركر
+        Pushy.register({ 
+            appId: '6669941bd5a7d7452d3a016d',
+            serviceWorkerFile: '/99900/service-worker.js' 
+        }).then(function (deviceToken) {
             console.log('Pushy device token:', deviceToken);
             tokenBox.innerText = deviceToken;
             alert('تم تفعيل الإشعارات بنجاح على هذا الهاتف!');
@@ -43,7 +45,7 @@
         });
     });
 
-    // كود داخلي للتعامل مع الإشعار عند وصوله والتطبيق مفتوح أمامك
+    // كود داخلي للتعامل مع الإشعار عند وصوله
     Pushy.setNotificationHandler(function (data) {
         console.log('Received notification:', data);
         alert('🛍️ إشعار فوري: ' + data.message);
