@@ -31,10 +31,10 @@
     registerBtn.addEventListener('click', async () => {
         tokenBox.innerText = "جاري الاتصال بـ Pushy وجلب رمز الجهاز...";
         
-        // تم التعديل هنا لحل مشكلة الـ 404 بإضافة مسار السيرفس وركر
+        // التعديل هنا: كتبنا اسم الملف مباشرة ليقرأه من نفس المجلد
         Pushy.register({ 
             appId: '6669941bd5a7d7452d3a016d',
-            serviceWorkerFile: '/99900/service-worker.js' 
+            serviceWorkerFile: 'service-worker.js' 
         }).then(function (deviceToken) {
             console.log('Pushy device token:', deviceToken);
             tokenBox.innerText = deviceToken;
