@@ -31,21 +31,20 @@
     registerBtn.addEventListener('click', async () => {
         tokenBox.innerText = "جاري الاتصال بـ Pushy وجلب رمز الجهاز...";
         
-        // التعديل هنا: كتبنا اسم الملف مباشرة ليقرأه من نفس المجلد
+        // تم وضع الـ App ID الحقيقي الخاص بتطبيقك هنا
         Pushy.register({ 
-            appId: '6669941bd5a7d7452d3a016d',
-            serviceWorkerFile: 'service-worker.js' 
+            appId: '6a2b4357a8bcff6c5eaec578',
+            serviceWorkerFile: 'https://1998basm1998-bot.github.io/99900/service-worker.js' 
         }).then(function (deviceToken) {
             console.log('Pushy device token:', deviceToken);
             tokenBox.innerText = deviceToken;
-            alert('تم تفعيل الإشعارات بنجاح على هذا الهاتف!');
+            alert('✅ تم تفعيل الإشعارات بنجاح على هذا الهاتف!');
         }).catch(function (err) {
             console.error(err);
             tokenBox.innerText = "حدث خطأ أثناء التفعيل: " + err.message;
         });
     });
 
-    // كود داخلي للتعامل مع الإشعار عند وصوله
     Pushy.setNotificationHandler(function (data) {
         console.log('Received notification:', data);
         alert('🛍️ إشعار فوري: ' + data.message);
